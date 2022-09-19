@@ -1,0 +1,56 @@
+global _start
+
+section .bss
+maxlines  equ       4
+dataSize  equ       4224
+output:   resb      dataSize
+
+section .text
+
+_start:
+	mov rdx,output ;move address of output to rdx
+	mov r8,1  ; registers for processing 
+	mov r9,0  ; 
+	mov r10,0 ;
+	mov r11,0 ;
+jumph:
+	mov r10,0 ;resetting r10
+	mov r11,maxlines
+	sub r11,r8
+
+line1:
+	mov byte[rdx],' ' ;empty line of spaces before *
+	inc rdx           ;increments rdx address
+	inc r10		  ;
+	cmp r10,r11
+	jne line1
+
+
+line2:
+	mov byte[rdx],'*' ;moving * to rdx
+	inc rdx           ; moving to next location
+	mov byte[rdx],' ' ; moving space to rdx
+	inc rdx           ; incrementing rdx
+	inc r9            ; incrementing r9 until reaching r8
+	cmp r9,r8         ; 
+	jne line2         ; repeat the block to complete the stars
+lined:
+	mov byte[rdx],10  ; 
+	inc rdx
+	inc r8
+	mov r9,0
+	cmp r8,maxlines
+	jng jumph
+
+done:
+	mov rax,1
+	mov rdi,1
+	mov rsi,output
+	mov rdx,dataSize
+	syscall
+	mov rax,60
+	xor rdi,rdi
+	syscall
+
+
+

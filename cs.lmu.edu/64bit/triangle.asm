@@ -3,10 +3,11 @@ maxlines  equ       8
 dataSize  equ       44
 output:   resb      dataSize
 
-global _start
+global main
 section .text
 
-_start:
+main:
+    mov rbp, rsp; for correct debugging
 	mov rdx,output
 	mov r8,1
 	mov r9,0
