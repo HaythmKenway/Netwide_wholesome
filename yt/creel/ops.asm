@@ -16,7 +16,7 @@ main:
     mov ebx,0101010101111101b
     or eax,ebx
     
-    ;result 65535
+    ;result 65535 
     
     ;xor
     mov eax,1010101010111110b
@@ -30,5 +30,15 @@ main:
     not eax
     mov ebx,eax
     ;result 4294967235
+    mov eax,1010101010111110b
+    shr eax,1;43710
+    ;mov eax,eax
+    shl eax,1;43710
+   ; mov eax,eax
+    ror eax,1;21855
+    ;mov eax,eax
+    rol eax,1;43710
+    ;mov eax,eax
+    
     
     
